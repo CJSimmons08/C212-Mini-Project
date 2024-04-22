@@ -75,58 +75,27 @@ public class Store implements IStore{
             List<String> commands = FileUtils.readCommandsFromFile();
 
             for(String currCommand : commands){
+                String name = "";
+                String[] nameGet = currCommand.split("'");
+                name = name.concat(nameGet[1]);
                 String[] splitCommand = currCommand.split(" ");
-                switch (splitCommand[0]){
-                    case "ADD":
+                switch (splitCommand[0]) {
+                    case "ADD" ->
                         //at some point remove apostrophes from itemname
-                        add(splitCommand);
-                        break;
-                    case "COST":
-                        cost(splitCommand);
-                        break;
-                    case "EXIT":
-                        exit(splitCommand);
-                        break;
-                    case "FIND":
-                        find(splitCommand);
-                        break;
-                    case "FIRE":
-                        fire(splitCommand);
-                        break;
-                    case "HIRE":
-                        hire(splitCommand);
-                        break;
-                    case "PROMOTE":
-                        promote(splitCommand);
-                        break;
-                    case "SAW":
-                        saw(splitCommand);
-                        break;
-                    case "SCHEDULE":
-                        schedule(splitCommand);
-                        break;
-                    case "SELL":
-                        sell(splitCommand);
-                        break;
-                    case "QUANTITY":
-                        quantity(splitCommand);
-                        break;
+                            add(splitCommand, name);
+                    case "COST" -> cost(splitCommand, name);
+                    case "EXIT" -> exit(splitCommand);
+                    case "FIND" -> find(splitCommand, name);
+                    case "FIRE" -> fire(splitCommand, name);
+                    case "HIRE" -> hire(splitCommand, name);
+                    case "PROMOTE" -> promote(splitCommand, name);
+                    case "SAW" -> saw(splitCommand, name);
+                    case "SCHEDULE" -> schedule(splitCommand, name);
+                    case "SELL" -> sell(splitCommand, name);
+                    case "QUANTITY" -> quantity(splitCommand, name);
                 }
             }
 
-            /*
-            * Scanner for the user to end program
-            */
-            Scanner usrInput = new Scanner(System.in);
-            System.out.println("Please hit Enter to end the program when you are finished.");
-            String currInput = "blank";
-            while(!currInput.isEmpty()){
-                if(!usrInput.hasNext()){
-                    continue;
-                }
-                currInput = usrInput.next();
-            }
-            System.exit(1);
         }
         catch (IOException exception)
         {
@@ -134,55 +103,95 @@ public class Store implements IStore{
         }
     }
 
-    public void add(String[] splitCommand) throws IOException {
-        String itemName = splitCommand[1];
+    public void add(String[] splitCommand, String itemName) throws IOException {
         String itemCost = splitCommand[2];
         String itemQuantity = splitCommand[3];
         String itemAisle = splitCommand[4];
         String addedLine = itemName + "," + itemCost + "," + itemQuantity + "," + itemAisle;
         FileUtils.writeNewItemToInventory(addedLine);
-        itemName = itemName.substring(1, itemName.length() - 1);
         String outputLine = itemName + " was added to inventory";
         FileUtils.writeLineToOutputFile(outputLine);
     }
 
-    public void cost(String[] splitCommand){
+    public void cost(String[] splitCommand, String itemName) throws IOException {
+        String outputLine = "";
+        for(Item currItem : inventory){
+            if(currItem.getName().equals(itemName)){
+                outputLine = currItem.getName() + ": $" + currItem.getPrice();
+            }
+        }
+        FileUtils.writeLineToOutputFile(outputLine);
+    }
+
+    public void exit(String[] splitCommand) throws IOException {
+        String outputLine = "Thank you for visiting High's Hardware and Gardening!";
+        FileUtils.writeLineToOutputFile(outputLine);
+        Scanner usrInput = new Scanner(System.in);
+        System.out.println("Please hit Enter to continue...");
+        String currInput = "blank";
+        while(!currInput.isEmpty()){
+            if(!usrInput.hasNext()){
+                continue;
+            }
+            currInput = usrInput.next();
+        }
+        System.exit(1);
+    }
+
+    public void find(String[] splitCommand, String itemName) throws IOException {
+        for(Item currItem : inventory){
+            if(currItem.getName().equals(itemName)){
+                System.out.println(currItem.getQuantity() + " " + itemName + " are available in " + currItem.getAisle());
+                return;
+            }
+        }
+        System.out.println("ERROR: " + itemName + " cannot be found");
+    }
+
+    public void fire(String[] splitCommand, String staffName) throws IOException {
+        String outputLine = "";
+        /*
+        * Still need to make writeToStaffList work
+        */
+        for(Staff currStaff : staffList){
+            if(currStaff.getName().equals(staffName)){
+                staffList.remove(currStaff);
+                FileUtils.removeStaffFromFile(currStaff.getName());
+                outputLine = staffName + " was fired";
+                FileUtils.writeLineToOutputFile(outputLine);
+                return;
+            }
+        }
 
     }
 
-    public void exit(String[] splitCommand){
+    public void hire(String[] splitCommand, String name) throws IOException {
+        String outputLine = "";
 
     }
 
-    public void find(String[] splitCommand){
+    public void promote(String[] splitCommand, String name) throws IOException {
+        String outputLine = "";
 
     }
 
-    public void fire(String[] splitCommand){
+    public void saw(String[] splitCommand, String name) throws IOException {
+        String outputLine = "";
 
     }
 
-    public void hire(String[] splitCommand){
+    public void schedule(String[] splitCommand, String name) throws IOException {
+        String outputLine = "";
 
     }
 
-    public void promote(String[] splitCommand){
+    public void sell(String[] splitCommand, String name) throws IOException {
+        String outputLine = "";
 
     }
 
-    public void saw(String[] splitCommand){
-
-    }
-
-    public void schedule(String[] splitCommand){
-
-    }
-
-    public void sell(String[] splitCommand){
-
-    }
-
-    public void quantity(String[] splitCommand){
+    public void quantity(String[] splitCommand, String name) throws IOException {
+        String outputLine = "";
 
     }
 

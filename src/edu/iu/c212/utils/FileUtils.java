@@ -62,4 +62,38 @@ public class FileUtils {
         pw.close();
     }
 
+    public static void removeStaffFromFile(String staffName) throws IOException {
+        BufferedReader staffFile = new BufferedReader(new FileReader(staffAvailabilityFile));
+        File outputFile = new File("\"../resources/staff_availability_IN_Output.txt\"");
+        PrintWriter pw = new PrintWriter(new FileWriter(outputFile));
+
+        String line = "";
+        while((line = staffFile.readLine()) != null){
+            /*
+            * Because this is line.contains, staff names need
+            * to be written to the list the same way as they are
+            * written in the staff file
+            */
+            if(!line.contains(staffName)){
+                pw.println(line);
+            }
+        }
+        pw.close();
+
+        staffFile.close();
+        if(staffAvailabilityFile.delete()){
+            if(!outputFile.renameTo(staffAvailabilityFile)){
+                throw new IOException("Could not rename staff_availability_IN_Output.txt to staff_availability_IN.txt");
+            }
+        }
+        else{
+            throw new IOException("Could not delete original Staff file");
+        }
+
+
+    }
+
+    public static void removeItemFromInventory(String itemName) throws FileNotFoundException{
+    }
+
 }
