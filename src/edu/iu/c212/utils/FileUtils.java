@@ -2,8 +2,8 @@ package edu.iu.c212.utils;
 
 import edu.iu.c212.models.*;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
@@ -22,31 +22,44 @@ public class FileUtils {
         return null;
     }
 
-    public List<Staff> readStaffFromFile() throws IOException {
+    public static List<Staff> readStaffFromFile() throws IOException {
         // TODO
         return null;
     }
 
-    public void writeInventoryToFile(List<Item> items) {
-        // TODO
+    public static void writeInventoryToFile(List<Item> items) {
 
+        // TODO
     }
 
-    public void writeStaffToFile(List<Staff> employees) {
+    public static void writeStaffToFile(List<Staff> employees) {
         // TODO
     }
 
     public static List<String> readCommandsFromFile() throws IOException {
-        // TODO
-        return null;
+        List<String> commands = new ArrayList<>();
+        BufferedReader file = new BufferedReader(new FileReader(inventoryFile));
+        String line = "";
+        while((line = file.readLine()) != null){
+            commands.add(line);
+        }
+        return commands;
     }
 
     public static void writeStoreScheduleToFile(List<String> lines) {
         // TODO
     }
 
-    public static void writeLineToOutputFile(String line) {
-        // TODO
+    public static void writeLineToOutputFile(String line) throws IOException {
+        PrintWriter pw = new PrintWriter(new FileWriter(outputFile));
+        pw.println(line);
+        pw.close();
+    }
+
+    public static void writeNewItemToInventory(String line) throws IOException {
+        PrintWriter pw = new PrintWriter(new FileWriter(inventoryFile));
+        pw.println(line);
+        pw.close();
     }
 
 }
