@@ -165,7 +165,7 @@ public class Store implements IStore{
 
     }
 
-    public void hire(String[] splitCommand, String name) throws IOException {
+    public void hire(String[] splitCommand, String staffName) throws IOException {
         String outputLine = "";
 
     }

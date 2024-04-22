@@ -62,6 +62,10 @@ public class FileUtils {
         pw.close();
     }
 
+    public static void writeNewStaffToFile(String line) throws IOException {
+        PrintWriter pw = new PrintWriter(new FileWriter(staffAvailabilityFile));
+    }
+
     public static void removeStaffFromFile(String staffName) throws IOException {
         BufferedReader staffFile = new BufferedReader(new FileReader(staffAvailabilityFile));
         File outputFile = new File("\"../resources/staff_availability_IN_Output.txt\"");
