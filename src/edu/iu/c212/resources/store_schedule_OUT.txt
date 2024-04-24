@@ -1,8 +1,8 @@
-Created on 4/12/2022 at 1727
-M (Kenneth White) (Catherine Garcia) (Amanda Smith)
-T (Jason Henderson) (Lisa Russell) (Jack Sanchez)
-W (Wanda Flores) (Anthony Mitchell) (Jack Sanchez)
-TR (Jason Henderson) (Earl Edwards) (Amanda Smith)
-F  (Kenneth White) (Catherine Garcia) (Carolyn Perry)
-SAT (Wanda Flores) (Earl Edwards) (Carolyn Perry)
-SUN (Jason Henderson) (Anthony Mitchell) (Carolyn Perry)
+Created on 4/24/2024 at 1751
+M (Amanda S) (Catherine G) (Anthony M) (Jack S) (Kenneth W)
+T (Amanda S) (Lisa R) (Jason H) (Jack S) (Kenneth W)
+W (Amanda S) (Lisa R) (Catherine G) (Wanda F) (Anthony M) (Jack S) (Kenneth W)
+TR (Amanda S) (Earl E) (Lisa R) (Jason H) (Wanda F)
+F (Earl E) (Lisa R) (Catherine G) (Wanda F) (Anthony M) (Kenneth W) (Carolyn P)
+SAT (Earl E) (Catherine G) (Jason H) (Carolyn P)
+SUN (Earl E) (Jason H) (Wanda F) (Anthony M) (Carolyn P)
