@@ -1,6 +1,5 @@
 package edu.iu.c212.programs;
 
-import edu.iu.c212.models.Staff;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -10,7 +9,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class StaffScheduler {
-    public void scheduleStaff(){
+    public static void scheduleStaff(){
         // hash map to track days available for each staff member
         HashMap<String, ArrayList<String>> staffAvailability = new HashMap<>();
         // hash map to track the hours of each staff member
@@ -123,7 +122,4 @@ public class StaffScheduler {
 
     }
 
-    public static void main(String[] args) {
-        new StaffScheduler().scheduleStaff();
-    }
 }
