@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class StaffScheduler {
 
-    public void scheduleStaff(){
+    public static void scheduleStaff(){
         // hash map to track days available for each staff member
         HashMap<String, ArrayList<String>> staffAvailability = new HashMap<>();
         // hash map to track the hours of each staff member
